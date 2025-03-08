@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { RolesModule } from './modules/roles/roles.module';
 import { OrganizationModule } from './modules/organization/organization.module';
 import { HrModule } from './modules/hr/hr.module';
+import { FinanceModule } from './modules/finance/finance.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { HrModule } from './modules/hr/hr.module';
     RolesModule,
     OrganizationModule,
     HrModule,
+    FinanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
