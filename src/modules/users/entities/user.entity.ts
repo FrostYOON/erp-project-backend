@@ -1,10 +1,17 @@
-import { Entity, Column, OneToOne, ManyToMany, JoinTable } from 'typeorm';
+import {
+  Entity,
+  Column,
+  OneToOne,
+  ManyToMany,
+  JoinTable,
+  OneToMany,
+} from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserProfile } from './user-profile.entity';
 import { Role } from '../../roles/entities/role.entity';
 import { UserEmployment } from './user-employment.entity';
 import { UserSecurity } from './user-security.entity';
-
+import { UserSession } from './user-session.entity';
 /**
  * 사용자 엔티티
  * 시스템의 사용자 계정 정보를 저장하는 기본 엔티티입니다.
@@ -65,4 +72,10 @@ export class User extends BaseEntity {
    */
   @OneToOne(() => UserSecurity, (security) => security.user, { cascade: true })
   security: UserSecurity;
+
+  /**
+   * 사용자 세션 정보와의 일대다 관계
+   */
+  @OneToMany(() => UserSession, (session) => session.user)
+  sessions: UserSession[];
 }
