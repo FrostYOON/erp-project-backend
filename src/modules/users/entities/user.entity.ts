@@ -3,6 +3,7 @@ import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserProfile } from './user-profile.entity';
 import { Role } from '../../roles/entities/role.entity';
 import { UserEmployment } from './user-employment.entity';
+import { UserSecurity } from './user-security.entity';
 
 /**
  * 사용자 엔티티
@@ -58,4 +59,10 @@ export class User extends BaseEntity {
     cascade: true,
   })
   employment: UserEmployment;
+
+  /**
+   * 사용자 보안 정보와의 일대일 관계
+   */
+  @OneToOne(() => UserSecurity, (security) => security.user, { cascade: true })
+  security: UserSecurity;
 }
