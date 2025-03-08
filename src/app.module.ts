@@ -9,6 +9,7 @@ import { RolesModule } from './modules/roles/roles.module';
 import { OrganizationModule } from './modules/organization/organization.module';
 import { HrModule } from './modules/hr/hr.module';
 import { FinanceModule } from './modules/finance/finance.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { FinanceModule } from './modules/finance/finance.module';
     OrganizationModule,
     HrModule,
     FinanceModule,
+    InventoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
