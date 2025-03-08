@@ -1,6 +1,7 @@
-import { Entity, Column, OneToOne } from 'typeorm';
+import { Entity, Column, OneToOne, ManyToMany, JoinTable } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserProfile } from './user-profile.entity';
+import { Role } from '../../roles/entities/role.entity';
 
 /**
  * 사용자 엔티티
@@ -37,4 +38,15 @@ export class User extends BaseEntity {
    */
   @OneToOne(() => UserProfile, (profile) => profile.user, { cascade: true })
   profile: UserProfile;
+
+  /**
+   * 사용자 역할과의 다대다 관계
+   */
+  @ManyToMany(() => Role)
+  @JoinTable({
+    name: 'user_roles',
+    joinColumn: { name: 'userId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'roleId', referencedColumnName: 'id' },
+  })
+  roles: Role[];
 }
