@@ -1,5 +1,6 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
+import { UserProfile } from './user-profile.entity';
 
 /**
  * 사용자 엔티티
@@ -30,4 +31,10 @@ export class User extends BaseEntity {
    */
   @Column({ default: false })
   isEmailVerified: boolean;
+
+  /**
+   * 사용자 프로필 정보와의 일대일 관계
+   */
+  @OneToOne(() => UserProfile, (profile) => profile.user, { cascade: true })
+  profile: UserProfile;
 }
