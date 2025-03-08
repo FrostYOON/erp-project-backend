@@ -2,6 +2,7 @@ import { Entity, Column, OneToOne, ManyToMany, JoinTable } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserProfile } from './user-profile.entity';
 import { Role } from '../../roles/entities/role.entity';
+import { UserEmployment } from './user-employment.entity';
 
 /**
  * 사용자 엔티티
@@ -49,4 +50,12 @@ export class User extends BaseEntity {
     inverseJoinColumn: { name: 'roleId', referencedColumnName: 'id' },
   })
   roles: Role[];
+
+  /**
+   * 사용자 고용 정보와의 일대일 관계
+   */
+  @OneToOne(() => UserEmployment, (employment) => employment.user, {
+    cascade: true,
+  })
+  employment: UserEmployment;
 }
