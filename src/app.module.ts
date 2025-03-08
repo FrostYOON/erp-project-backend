@@ -11,6 +11,7 @@ import { HrModule } from './modules/hr/hr.module';
 import { FinanceModule } from './modules/finance/finance.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { ProcurementModule } from './modules/procurement/procurement.module';
+import { SalesModule } from './modules/sales/sales.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ProcurementModule } from './modules/procurement/procurement.module';
     FinanceModule,
     InventoryModule,
     ProcurementModule,
+    SalesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
