@@ -10,6 +10,7 @@ import { OrganizationModule } from './modules/organization/organization.module';
 import { HrModule } from './modules/hr/hr.module';
 import { FinanceModule } from './modules/finance/finance.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
+import { ProcurementModule } from './modules/procurement/procurement.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { InventoryModule } from './modules/inventory/inventory.module';
     HrModule,
     FinanceModule,
     InventoryModule,
+    ProcurementModule,
   ],
   controllers: [AppController],
   providers: [AppService],
