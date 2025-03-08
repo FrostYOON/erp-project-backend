@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
 import { RolesModule } from './modules/roles/roles.module';
+import { OrganizationModule } from './modules/organization/organization.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { RolesModule } from './modules/roles/roles.module';
     TypeOrmModule.forRoot(typeOrmConfig.options),
     UsersModule,
     RolesModule,
+    OrganizationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
