@@ -16,6 +16,7 @@ import { ProjectModule } from './modules/project/project.module';
 import { ManufacturingModule } from './modules/manufacturing/manufacturing.module';
 import { CrmModule } from './modules/crm/crm.module';
 import { DocumentModule } from './modules/document/document.module';
+import { AssetModule } from './modules/asset/asset.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { DocumentModule } from './modules/document/document.module';
     ManufacturingModule,
     CrmModule,
     DocumentModule,
+    AssetModule,
   ],
   controllers: [AppController],
   providers: [AppService],
