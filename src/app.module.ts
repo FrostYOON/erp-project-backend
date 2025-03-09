@@ -19,6 +19,7 @@ import { DocumentModule } from './modules/document/document.module';
 import { AssetModule } from './modules/asset/asset.module';
 import { QualityModule } from './modules/quality/quality.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { FilesModule } from './modules/files/files.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
@@ -38,6 +39,7 @@ import { RolesGuard } from './modules/auth/guards/roles.guard';
     AuthModule,
     UsersModule,
     RolesModule,
+    FilesModule,
     OrganizationModule,
     HrModule,
     FinanceModule,
