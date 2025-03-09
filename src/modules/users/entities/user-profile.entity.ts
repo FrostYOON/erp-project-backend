@@ -50,4 +50,35 @@ export class UserProfile extends BaseEntity {
    */
   @Column({ nullable: true })
   profileImageUrl: string;
+
+  /**
+   * 주소
+   */
+  @Column({ nullable: true })
+  address: string;
+
+  /**
+   * 직업
+   */
+  @Column({ nullable: true })
+  occupation: string;
+
+  /**
+   * 자기소개
+   */
+  @Column({ nullable: true, type: 'text' })
+  bio: string;
+
+  /**
+   * 소셜 미디어 링크 (JSON 형태로 저장)
+   */
+  @Column({ nullable: true, type: 'json', default: '{}' })
+  socialLinks: Record<string, string>;
+
+  /**
+   * 프로필 완성도 (%)
+   * 프로필 정보가 얼마나 완성되었는지 나타내는 값
+   */
+  @Column({ default: 0 })
+  completionRate: number;
 }

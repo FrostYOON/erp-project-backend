@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 import { User } from './entities/user.entity';
+import { UserProfile } from './entities/user-profile.entity';
 import { hashPassword } from '../../common/utils/password.utils';
 
 @Injectable()
@@ -11,6 +13,8 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(UserProfile)
+    private userProfileRepository: Repository<UserProfile>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -98,5 +102,60 @@ export class UsersService {
       throw new Error(`사용자 ID ${id}를 찾을 수 없습니다.`);
     }
     return this.userRepository.remove(user);
+  }
+
+  /**
+   * 사용자 프로필 업데이트
+   * @param userId 사용자 ID
+   * @param updateProfileDto 프로필 업데이트 DTO
+   * @returns 업데이트된 프로필 정보
+   */
+  async updateProfile(userId: string, updateProfileDto: UpdateProfileDto) {
+    const user = await this.findOne(userId);
+
+    if (!user) {
+      throw new NotFoundException(`사용자 ID ${userId}를 찾을 수 없습니다.`);
+    }
+
+    // 프로필이 없는 경우 생성
+    if (!user.profile) {
+      user.profile = this.userProfileRepository.create({
+        userId: user.id,
+      });
+    }
+
+    // 프로필 정보 업데이트
+    Object.assign(user.profile, updateProfileDto);
+
+    // 프로필 완성도 계산
+    user.profile.completionRate = this.calculateProfileCompletionRate(
+      user.profile,
+    );
+
+    // 프로필 저장
+    await this.userProfileRepository.save(user.profile);
+
+    return user.profile;
+  }
+
+  /**
+   * 프로필 완성도 계산
+   * @param profile 사용자 프로필
+   * @returns 프로필 완성도 (%)
+   */
+  private calculateProfileCompletionRate(profile: UserProfile): number {
+    const fields = [
+      'firstName',
+      'lastName',
+      'phoneNumber',
+      'dateOfBirth',
+      'profileImageUrl',
+      'address',
+      'occupation',
+      'bio',
+    ];
+
+    const filledFields = fields.filter((field) => !!profile[field]);
+    return Math.round((filledFields.length / fields.length) * 100);
   }
 }
