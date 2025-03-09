@@ -5,6 +5,19 @@ import { UsersModule } from './modules/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
+import { RolesModule } from './modules/roles/roles.module';
+import { OrganizationModule } from './modules/organization/organization.module';
+import { HrModule } from './modules/hr/hr.module';
+import { FinanceModule } from './modules/finance/finance.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
+import { ProcurementModule } from './modules/procurement/procurement.module';
+import { SalesModule } from './modules/sales/sales.module';
+import { ProjectModule } from './modules/project/project.module';
+import { ManufacturingModule } from './modules/manufacturing/manufacturing.module';
+import { CrmModule } from './modules/crm/crm.module';
+import { DocumentModule } from './modules/document/document.module';
+import { AssetModule } from './modules/asset/asset.module';
+import { QualityModule } from './modules/quality/quality.module';
 
 @Module({
   imports: [
@@ -19,6 +32,19 @@ import { ConfigModule } from '@nestjs/config';
     }),
     TypeOrmModule.forRoot(typeOrmConfig.options),
     UsersModule,
+    RolesModule,
+    OrganizationModule,
+    HrModule,
+    FinanceModule,
+    InventoryModule,
+    ProcurementModule,
+    SalesModule,
+    ProjectModule,
+    ManufacturingModule,
+    CrmModule,
+    DocumentModule,
+    AssetModule,
+    QualityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
