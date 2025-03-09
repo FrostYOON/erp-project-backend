@@ -17,6 +17,7 @@ import { ManufacturingModule } from './modules/manufacturing/manufacturing.modul
 import { CrmModule } from './modules/crm/crm.module';
 import { DocumentModule } from './modules/document/document.module';
 import { AssetModule } from './modules/asset/asset.module';
+import { QualityModule } from './modules/quality/quality.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { AssetModule } from './modules/asset/asset.module';
     CrmModule,
     DocumentModule,
     AssetModule,
+    QualityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
